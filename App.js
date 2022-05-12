@@ -6,8 +6,14 @@ import WeatherInfo from './Components/WeatherInfo';
 import UnitsPicker from './Components/UnitsPicker';
 import { colors } from './utils';
 import ReloadIcon from './Components/ReloadIcon';
+import WeatherDetails from './Components/WeatherDetails';
+
+
+
 const WEATHER_API_KEY = 'a894bbe7a75cb44287b1b48377351eb8';
 const WEATHER_API_URL = 'http://api.openweathermap.org/data/2.5/weather';
+
+
 export default function App() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [currentWeather, setCurrentWeather] = useState(null);
@@ -49,25 +55,25 @@ export default function App() {
       <View style={styles.container}>
         <StatusBar style="auto" />
         <View style={styles.main}>
-         <UnitsPicker unitSystem={unitSystem} setUnitSystem={setUnitSystem} />
-         <ReloadIcon load={load} />
-          <WeatherInfo currentWeather={currentWeather}/>
+          <UnitsPicker unitSystem={unitSystem} setUnitSystem={setUnitSystem} />
+          <ReloadIcon load={load} />
+          <WeatherInfo currentWeather={currentWeather} />
         </View>
-
+        <WeatherDetails currentWeather={currentWeather}/>
       </View>
     );
-  } else if(errorMessage) {
+  } else if (errorMessage) {
     return (
       <View style={styles.container}>
         <Text>{errorMessage}</Text>
         <StatusBar style="auto" />
       </View>
     );
-  }else{
+  } else {
     return (
       <View style={styles.container}>
-        <ActivityIndicator size="large" color={colors.PRIMARY_COLOR}/>
-        <StatusBar style="auto"  />
+        <ActivityIndicator size="large" color={colors.PRIMARY_COLOR} />
+        <StatusBar style="auto" />
       </View>
     );
   }
